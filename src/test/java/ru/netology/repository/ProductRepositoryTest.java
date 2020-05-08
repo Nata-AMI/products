@@ -18,4 +18,12 @@ class ProductRepositoryTest {
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldRemoveByIdIfExist(int id) {
+        Product product = new Product(1, "Java I", 1000);
+        assertEquals(1, repository.removeById(1));
+
+
+    }
 }
