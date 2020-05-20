@@ -12,7 +12,7 @@ class BookTest {
     @Test
     public void shouldCastFromBaseClass() {
         Product product = new Book();
-        if (product instanceof Book) {
+        if Product instanceof Book) {
             Book book = (Book) product;
 //      book.
         }
