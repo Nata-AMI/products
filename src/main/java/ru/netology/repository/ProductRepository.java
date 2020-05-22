@@ -23,7 +23,7 @@ public class ProductRepository {
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
-        for (Product item : items) {
+        for (Product item : findById()) {
             if (item.getId() != id) {
                 tmp[index] = item;
                 index++;
