@@ -12,25 +12,26 @@ class ProductRepositoryTest {
 
     @Test
     public void shouldSaveOneItem() {
-        repository.save("Java I");
+        repository.save(product);
 
-        Product[] expected = new Product[]{"Java I"};
+        Product[] expected = new Product[]{product};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldRemoveByIdIfExist(int id) {
-        repository.save("Java I");
+    public void shouldRemoveByIdIfExist() {
+        repository.save(product);
+        repository.removeById(1);
 
-        Product actual = repository.removeById(1);
-        Product expected = new Product[]{"Java I"};
+        Product actual =repository.findAll();
+        Product expected = new Product[0];
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldRemoveByIdIfNoExist() {
-        repository.save("Java I");
+        repository.save(product);
 
         assertThrows(NotFoundException.class, () -> repository.removeById(2));
     }

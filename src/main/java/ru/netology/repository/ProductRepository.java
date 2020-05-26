@@ -20,10 +20,13 @@ public class ProductRepository {
     }
 
     public void removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException("Item not found: " + id);
+        }
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
-        for (Product item : findById()) {
+        for (Product item : items) {
             if (item.getId() != id) {
                 tmp[index] = item;
                 index++;
@@ -33,17 +36,14 @@ public class ProductRepository {
     }
 
     public Product findById(int id) {
-        Product [] result = new Product[0];
-        for (Product item : findAll()) {
+        for (Product item : items) {
             if (item.getId() == id) {
-                Product[] tmp = new Product[result.length + 1];
-                System.arraycopy(result, 0, tmp, 0, result.length);
-                tmp[tmp.length - 1] = item;
-                result = tmp;
+                return item;
             }
         }
-        throw new NotFoundException("Item not found: " + id);
+        return null;
     }
+
 
 }
 
